@@ -1,0 +1,22 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: sans-serif;
+}
+
+.voting_block{
+    width: 100%;
+}
+
+.voting-block-title{
+    display: flex;
+    padding: 10px 15px;
+    color: #fff;
+    background-color: #0d0121;
+}
+
+.voting-list{
+    width: auto;
+    padding: 15px;
+}
