@@ -20,3 +20,24 @@
     width: auto;
     padding: 15px;
 }
+
+.chart{
+    width:300px;
+    height: 200px;
+    border: 1px solid red;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: flex-start;
+    padding: 5px;
+    flex-direction: column;
+}
+
+.chart div{
+    height: 20px;
+    background-color: rgb(0, 119, 255);
+    transition: 0.6s linear;
+}
+.chart div::before{
+    content: attr(data-per);
+    margin-right: 5px;
+}

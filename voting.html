@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,6 +8,7 @@
     <link rel="stylesheet" href="voting.css">
     <title>Document</title>
 </head>
+
 <body>
     <div class="voting_block">
         <div class="voting-block-title">
@@ -23,35 +25,56 @@
             <input type="radio" name="v1" id="third">
             <label for="third">Javascript</label>
         </div>
+        <div class="chart">
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
     </div>
 
     <script>
         let input = document.querySelectorAll('input')
-        let voting = [
-            {
-                name:'HTML',
-                voting:0
-            },
-            {
-                name:'CSS',
-                voting:0
-            },
-            {
-                name:'Javascript',
-                voting:0
-            }
-        ]
-
-        input.forEach((item, index)=>{
-            item.addEventListener('click',(e)=>{
-                if (e.target.checked === true) {
-                    voting[index].voting +=1
-                    console.log(voting[index].voting);
-                } else {
-                    
-                }
+        fetch("http://localhost:3000/votings")
+            .then(res => res.json())
+            .then(data => getData(data))
+        function getData(data) {
+            input.forEach((item, index) => {
+                item.addEventListener('click', (e) => {
+                    if (e.target.checked === true) {
+                        let pos = {
+                            votes: data[index].votes += 1
+                        }
+                        localStorage.setItem('index', index)
+                        console.log(index);
+                        fetch(`http://localhost:3000/votings/${index + 1}`, {
+                            method: 'PUT', // or 'PUT'
+                            headers: {
+                                'Content-Type': 'application/json',
+                            },
+                            body: JSON.stringify(pos),
+                        })
+                            .then((response) => response.json())
+                            .then((data) => {
+                                console.log('Success:', data);
+                            })
+                            .catch((error) => {
+                                console.error('Error:', error);
+                            });
+                    }
+                    input.forEach(item=>{
+                        item.setAttribute('disabled',"")
+                    })
+                })
             })
-        })
+            let chart = document.querySelectorAll('.chart div')
+            let total = data[0].votes + data[1].votes + data[2].votes
+            chart.forEach((item, index) => {
+                let per = parseInt((data[index].votes * 100) / total) + "%"
+                item.style.width = per
+                item.setAttribute('data-per', per)
+            })
+        }
     </script>
 </body>
+
 </html>
