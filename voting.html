@@ -5,7 +5,10 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="voting.css">
+    <link rel="stylesheet" href="./css/voting.css">
+    <link rel="stylesheet" href="https://site-assets.fontawesome.com/releases/v6.2.1/css/all.css">
+
+    <link rel="stylesheet" href="https://site-assets.fontawesome.com/releases/v6.2.1/css/sharp-solid.css">
     <title>Document</title>
 </head>
 
@@ -26,55 +29,19 @@
             <label for="third">Javascript</label>
         </div>
         <div class="chart">
-            <div></div>
-            <div></div>
-            <div></div>
+            <div class="col">
+                <div></div>
+            </div>
+            <div class="col">
+                <div></div>
+            </div>
+            <div class="col">
+                <div></div>
+            </div>
         </div>
     </div>
-
-    <script>
-        let input = document.querySelectorAll('input')
-        fetch("http://localhost:3000/votings")
-            .then(res => res.json())
-            .then(data => getData(data))
-        function getData(data) {
-            input.forEach((item, index) => {
-                item.addEventListener('click', (e) => {
-                    if (e.target.checked === true) {
-                        let pos = {
-                            votes: data[index].votes += 1
-                        }
-                        localStorage.setItem('index', index)
-                        console.log(index);
-                        fetch(`http://localhost:3000/votings/${index + 1}`, {
-                            method: 'PUT', // or 'PUT'
-                            headers: {
-                                'Content-Type': 'application/json',
-                            },
-                            body: JSON.stringify(pos),
-                        })
-                            .then((response) => response.json())
-                            .then((data) => {
-                                console.log('Success:', data);
-                            })
-                            .catch((error) => {
-                                console.error('Error:', error);
-                            });
-                    }
-                    input.forEach(item=>{
-                        item.setAttribute('disabled',"")
-                    })
-                })
-            })
-            let chart = document.querySelectorAll('.chart div')
-            let total = data[0].votes + data[1].votes + data[2].votes
-            chart.forEach((item, index) => {
-                let per = parseInt((data[index].votes * 100) / total) + "%"
-                item.style.width = per
-                item.setAttribute('data-per', per)
-            })
-        }
-    </script>
+    <script src="./app.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.2.2/axios.min.js"></script>
 </body>
 
 </html>
