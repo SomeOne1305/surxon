@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
+    <title>Voting styles</title>
+</head>
+<body>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        h1, h2, h3, h4, h5, h6, p, span{
+            font-family: 'Open Sans', sans-serif;
+        }
+
+        body{
+            width: 100%;
+            display: flex;
+            align-items: center;
+            flex-direction: column;
+            background-color: #f1f1f1;
+        }
+        /* First poll styling start */
+        .voting_poll{
+            padding: 10px;
+            border-radius: 10px;
+            background-color: #ffffff;
+            margin: 20px 0;
+        }
+        .voting_poll_items{
+            padding: 5px;
+        }
+        .voting_poll_item{
+            display: flex;
+            align-items: center;
+            padding: 5px 15px;
+            margin: 6px 0;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .radio_btn{
+            width: 18px;
+            height: 18px;
+            border-radius: 100%;
+            border: 2px solid crimson;
+            padding: 2px;
+            margin-right: 15px;
+        }
+        .radio_btn-active{
+            width: 100%;
+            height: 100%;
+            border-radius: 100%;
+            background-color: transparent;
+        }
+        .voting_poll_item.active{
+            background-color: #f1f1f1;
+        }
+        .voting_poll_item.active .radio_btn-active{
+            background-color: crimson;
+        }
+
+        .options{
+            padding: 5px 0;
+            display: flex;
+            margin: 5px 0;
+        }
+        .button{
+            padding: 5px 10px;
+            border-radius: 5px;
+            color: #ffffff;
+            margin: 0 5px;
+            cursor: pointer;
+        }
+        .send{
+            background-color: rgb(22, 233, 22);
+        }
+        .results{
+            background-color: #222969;
+        }
+        .warning{
+            color: rgb(205, 51, 51);
+            font-size: 12px;
+            margin-left: 5px;
+        }
+        .voted_people{
+            font-size: 12px;
+            color: gray;
+            margin: 0 0 0 10px;
+        }
+        /* First poll styling end */
+        .pad{
+            padding: 5px 0 !important;
+        }
+        /* Second poll styling start */
+        .an_item{
+            display: flex;
+            padding: 0 5px;
+        }
+        .an_item > .radio_btn{
+            border-color: rgb(219, 114, 135);
+        }
+        .an_item:hover .radio_btn{
+            border-color: crimson;
+        }
+        .result_item{
+            width: 100%;
+            display: flex;
+            align-items: center;
+        }
+
+        .percent_index{
+            margin-right: 10px;
+            font-size: 15px;
+        }
+
+        .percent_path{
+            width: 100%;
+            height: 8px;
+        }
+        .percent_line{
+            width: var(--lineWidth);
+            height: 100%;
+            background-color: rgb(27, 73, 223);
+            border-radius: 8px;
+        }
+        /* Second poll styliing end */
+    </style>
+    <div class="voting_poll">
+        <h3>Lorem ipsum dolor sit amet consectetur.</h3>
+        <div class="voting_poll_items">
+            <div class="voting_poll_item active">
+                <div class="radio_btn">
+                    <div class="radio_btn-active"></div>
+                </div>
+                <span>Lorem, ipsum dolor.</span>
+            </div>
+            <div class="voting_poll_item">
+                <div class="radio_btn">
+                    <div class="radio_btn-active"></div>
+                </div>
+                <span>Lorem, ipsum dolor.</span>
+            </div>
+            <div class="voting_poll_item">
+                <div class="radio_btn">
+                    <div class="radio_btn-active"></div>
+                </div>
+                <span>Lorem, ipsum dolor.</span>
+            </div>
+        </div>
+        <span class="warning">You have already voted these !</span>
+        <div class="options">
+            <div class="button send">
+                <span>Yuborish &#10148;</span>
+            </div>
+            <div class="button results">
+                <span>Natijalar</span>
+            </div>
+        </div>
+        <span class="voted_people">15 answers</span>
+    </div>
+
+    <div class="voting_poll">
+        <h3>Which animal do you like ?</h3>
+        <div class="voting_poll_items">
+            <div class="voting_poll_item active pad">
+                <div class="an_item">
+                    <div class="radio_btn">
+                        <div class="radio_btn-active"></div>
+                    </div>
+                    <span>Bear</span>
+                </div>
+            </div>
+            <div class="voting_poll_item pad">
+                <div class="an_item">
+                    <div class="radio_btn">
+                        <div class="radio_btn-active"></div>
+                    </div>
+                    <span>Snake</span>
+                </div>
+            </div>
+            <div class="voting_poll_item pad">
+                <div class="an_item">
+                    <div class="radio_btn">
+                        <div class="radio_btn-active"></div>
+                    </div>
+                    <span>Dog</span>
+                </div>
+            </div>
+            <div class="result_item">
+                <span class="percent_index">49%</span>
+                <div class="percent_path">
+                    <div class="percent_line" style="--lineWidth:49%;"></div>
+                </div>
+            </div>
+            <div class="result_item">
+                <span class="percent_index">49%</span>
+                <div class="percent_path">
+                    <div class="percent_line" style="--lineWidth:49%;"></div>
+                </div>
+            </div>
+            <div class="result_item">
+                <span class="percent_index">49%</span>
+                <div class="percent_path">
+                    <div class="percent_line" style="--lineWidth:49%;"></div>
+                </div>
+            </div>
+            <span class="warning">You have already voted these !</span>
+        </div>
+    </div>
+</body>
+</html>

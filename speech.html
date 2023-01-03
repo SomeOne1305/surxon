@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
+    <title>Speech</title>
+</head>
+
+<body>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        .container {
+            width: 1200px;
+            margin: 0 auto;
+            padding: 10px;
+        }
+
+        p {
+            font-family: sans-serif;
+        }
+
+        .volume {
+            position: relative;
+            width: 35px;
+            height: 35px;
+            padding: 5px;
+            border-radius: 5px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #ffffff;
+            background-color: #226ae7;
+            z-index: 1;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+        }
+
+        .volume::before {
+            content: '';
+            position: absolute;
+            left: 11.5px;
+            top: -6px;
+            width: 12px;
+            height: 12px;
+            transform: rotate(45deg);
+            background-color: #226ae7;
+            border-radius: 2px;
+        }
+
+        @media (max-width: 1200px) {
+            .container {
+                width: 100%;
+                margin: 0;
+            }
+        }
+    </style>
+    <div class="container">
+        <div class="volume">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 16 16">
+                <path
+                    d="M11.536 14.01A8.473 8.473 0 0 0 14.026 8a8.473 8.473 0 0 0-2.49-6.01l-.708.707A7.476 7.476 0 0 1 13.025 8c0 2.071-.84 3.946-2.197 5.303l.708.707z" />
+                <path
+                    d="M10.121 12.596A6.48 6.48 0 0 0 12.025 8a6.48 6.48 0 0 0-1.904-4.596l-.707.707A5.483 5.483 0 0 1 11.025 8a5.483 5.483 0 0 1-1.61 3.89l.706.706z" />
+                <path
+                    d="M10.025 8a4.486 4.486 0 0 1-1.318 3.182L8 10.475A3.489 3.489 0 0 0 9.025 8c0-.966-.392-1.841-1.025-2.475l.707-.707A4.486 4.486 0 0 1 10.025 8zM7 4a.5.5 0 0 0-.812-.39L3.825 5.5H1.5A.5.5 0 0 0 1 6v4a.5.5 0 0 0 .5.5h2.325l2.363 1.89A.5.5 0 0 0 7 12V4zM4.312 6.39 6 5.04v5.92L4.312 9.61A.5.5 0 0 0 4 9.5H2v-3h2a.5.5 0 0 0 .312-.11z" />
+            </svg>
+        </div>
+        <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Obcaecati aliquam quaerat impedit adipisci ex
+            perspiciatis commodi, ullam officiis ipsam! Quisquam eveniet veniam est eum ullam doloremque voluptas
+            adipisci autem provident nisi ea magni recusandae, id voluptatem pariatur maxime, repudiandae modi ipsum?
+            Id, reiciendis magnam. Velit, debitis nulla! Necessitatibus ab porro molestiae adipisci possimus temporibus
+            cumque aliquid ut qui at odio pariatur reprehenderit sint, debitis sunt suscipit quibusdam iure doloribus
+            iusto amet! Deserunt sed iure veniam, qui soluta dignissimos, quidem minus modi accusantium, saepe commodi
+            alias? Recusandae quod labore reiciendis iure quaerat in magni blanditiis veritatis vero eaque consequatur
+            dicta possimus, mollitia sit ullam id. Ipsa numquam neque dolorum possimus alias laborum perspiciatis maxime
+            quaerat eveniet, odio rem illum pariatur natus soluta veritatis quibusdam sed. Fuga, voluptatibus odio animi
+            quas quibusdam culpa? Eveniet quam facere deleniti impedit, laudantium consectetur magnam blanditiis nobis
+            molestias necessitatibus architecto ratione dolores natus odio est quae tenetur sunt repudiandae quo alias
+            velit. Eligendi expedita optio, suscipit minima praesentium eos sed qui. Laboriosam placeat ipsa ipsam
+            veritatis ea ducimus, animi corrupti, soluta eius rerum ad dolore cum cupiditate quos sequi maxime ut
+            possimus optio repellat voluptate officiis quibusdam pariatur numquam at. Officia autem asperiores
+            temporibus eum blanditiis. Далеко-далеко за словесными горами в стране гласных, и согласных живут рыбные тексты. Текстов всеми текста правилами.</p>
+    </div>
+    <script>
+        let p = document.querySelector('p'),
+            volume = document.querySelector('.volume');
+        p.addEventListener('mouseup', function (e) {
+            volume.style.left = e.clientX - 20 + 'px';
+            volume.style.top = e.clientY + 20 + 'px';
+            localStorage.setItem('volume', window.getSelection())
+        })
+        volume.addEventListener('click', () => {
+            let synth = window.speechSynthesis,
+                message = new SpeechSynthesisUtterance();
+            message.lang = 'ru-RU';
+            message.text = localStorage.getItem('volume');
+            synth.speak(message);
+            console.log(synth.lang)
+        })
+    </script>
+</body>
+
+</html>
