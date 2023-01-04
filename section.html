@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/voting_sect.css">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="activation_sect">
+        <div class="container">
+            <div class="web_activity">
+                <div class="voting_poll">
+                    <h3>Lorem ipsum dolor sit amet consectetur.</h3>
+                    <div class="voting_poll_items">
+                        <div class="voting_poll_item">
+                            <div class="radio_btn">
+                                <div class="radio_btn-active"></div>
+                            </div>
+                            <span>Lorem ipsum dolor sit amet consectetur.</span>
+                        </div>
+                        <div class="voting_poll_item">
+                            <div class="radio_btn">
+                                <div class="radio_btn-active"></div>
+                            </div>
+                            <span>Lorem, ipsum dolor.</span>
+                        </div>
+                        <div class="voting_poll_item">
+                            <div class="radio_btn">
+                                <div class="radio_btn-active"></div>
+                            </div>
+                            <span>Lorem, ipsum dolor.</span>
+                        </div>
+                    </div>
+                    <span class="warning">You have already voted these !</span>
+                    <div class="options">
+                        <div class="button send">
+                            <span>Yuborish &#10148;</span>
+                        </div>
+                        <div class="button results">
+                            <span>Natijalar</span>
+                        </div>
+                    </div>
+                    <span class="voted_people" id="voted">15 answers</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        "use strict";
+        let voting_poll_item = document.querySelectorAll('.voting_poll_item');
+        voting_poll_item.forEach((item) => {
+            let active = document.getElementsByClassName('active');
+            item.addEventListener('click', function (e) {
+                <!-- active[0].className = active[0].className.replace('active', ''); -->
+                item.classList.add('active');
+                //<!-- //active.length > 1 ? active[0].className = active[0].className.replace('active', '') : "" -->
+                active.className = 'voting_poll_item'
+                console.log(active.length)
+            })
+        })
+    </script>
+</body>
+
+</html>
