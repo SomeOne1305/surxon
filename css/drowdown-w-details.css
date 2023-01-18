@@ -1,0 +1,107 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, Impact;
+}
+
+.container{
+    width: 100%;
+    padding: 10px;
+}
+l
+.mob_menu{
+    padding: 5px;
+    border: 1px solid red;
+}
+
+.items{
+    width: 100%;
+    background-color: #eeeeee;
+}
+a{
+    text-decoration: none;
+    color: currentColor;
+}
+.items, .route, .inner_route:last-child(2){
+    border-left: 2px solid rgb(4, 4, 48);
+    border-bottom: 2px solid rgb(4, 4, 48);
+}
+.items{
+    width: 100%;
+    background-color: #dbdbdb;
+    margin: 10px 0;
+}
+
+.item{
+    width: 100%;
+    padding: 10px 15px;
+    position: relative;
+}
+.item.active .circle{
+    background-color: rgb(4, 4, 48);
+}
+.routes, .inner_routes{
+    width: 100%;
+    padding-left: 10px;
+    background-color: #f1f1f1;
+}
+.item span{
+    background-color: #f1f1f1;
+    padding: 5px 2px;
+}
+.routes{
+    height: 0 ;
+    overflow-y: hidden;
+    transition: 0.3s linear;
+    transform: scaleY(0);
+    transform-origin: top;
+    transition-delay: height 0.3s;
+}
+.item.active .routes{
+    height: 100%;
+    transform: scaleY(1);
+}
+.route, .inner_route{
+    width: 100%;
+    padding: 10px;
+    border-left: 2px solid  rgb(4, 4, 48);
+    position: relative;
+}
+.circle{
+    content: "";
+    width: 13px;
+    height: 13px;
+    background-color: #fff;
+    border-radius: 100%;
+    border: 2px solid rgb(4, 4, 48);
+    position: absolute;
+    top: 10px;
+    left: -8.5px;
+}
+summary::marker{
+    content: '';
+}
+summary::before{
+    content: "";
+    width: 10px;
+    height: 10px;
+    background-color: #fff;
+    border-radius: 100%;
+    border: 2px solid rgb(4, 4, 48);
+    position: absolute;
+    top: 10px;
+    left: -8.5px;
+
+}
+
+.route::after, .item::after, .inner_route::after{
+    content: '';
+    position: absolute;
+    top: 16px;
+    left: 4px;
+    display: block;
+    width: 7px;
+    height: 2px;
+    background-color: rgb(4, 4, 48);
+}

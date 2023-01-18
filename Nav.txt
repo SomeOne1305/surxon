@@ -1,0 +1,106 @@
+import React from "react";
+import "./nav.scss";
+import axios from "axios";
+
+export default function Nav() {
+  const [navItems, setNavItems] = React.useState([]);
+  React.useEffect(() => {
+    (async function () {
+      // let items = await axios.get("https://api.npoint.io/4dd4d14557a24631058b");
+      // setNavItems(items.data);
+      let nav = await axios.get("https://api.npoint.io/26f46edbf4c397c1e612/ru_nav");
+      setNavItems(nav.data);
+    })();
+  }, []);
+  async function postData(){
+    let data = {
+      userIP:'hello world'
+    }
+    await axios.post('https://api.npoint.io/c30ce14af6aa98c33e90/users', data , { headers:{
+      'Authorization':'session_dd13e621-edf4-4c0d-8709-8b2fc9a20ed7'
+    }})
+    console.log('Data was sent successfully');
+  }
+  // https://api.npoint.io/53dd658d494a90dc89f7 <= full nav
+  console.log(navItems);
+  return (
+    <div className="nav_bar">
+      <div className="nav_items">
+        <div className="item">
+          <a href="/"></a>
+          <div className="routesToPages">
+            <a href="/">
+              <div className="route">
+                <span></span>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="16"
+                  height="16"
+                  fill="currentColor"
+                  viewBox="0 0 16 16"
+                >
+                  <path
+                    fillRule="evenodd"
+                    d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z"
+                  />
+                </svg>
+                <div className="inner_item">
+                  <a href="/">
+                    <div className="inner_route">
+                      <span></span>
+                    </div>
+                  </a>
+                </div>
+              </div>
+            </a>
+          </div>
+        </div>
+        {navItems.map((item) => (
+          <div className="item">
+            <a href="/">{item.title}</a>
+            <div className="routesToPages">
+              {item.routes.map((inn) => (
+                <a href="/" key={item.path}>
+                  <div className="route">
+                    <span>{inn.route_title}</span>
+                    {inn.inner_routes !== undefined ? (
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="16"
+                        height="16"
+                        fill="currentColor"
+                        viewBox="0 0 16 16"
+                      >
+                        <path
+                          fillRule="evenodd"
+                          d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z"
+                        />
+                      </svg>
+                    ) : (
+                      ""
+                    )}
+                    {inn.inner_routes !== undefined ? (
+                      <div className="inner_item">
+                        {inn.inner_routes.map((inr) => (
+                          <a href="/">
+                            <div className="inner_route">
+                              <span>{inr.inner_title}</span>
+                            </div>
+                          </a>
+                        ))}
+                      </div>
+                    ) : (
+                      ""
+                    )}
+                  </div>
+                </a>
+              ))}
+            </div>
+          </div>
+        ))}
+        <button style={{padding:'10px 15px', cursor:'pointer' , backgroundColor:'cyan', border:'none', fontSize:'18px' , color:"#ffffff", borderRadius:'5px'}} onClick={()=>postData()}>Post Data</button>
+      </div>
+    </div>
+  );
+}
+
